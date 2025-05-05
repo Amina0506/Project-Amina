@@ -1,96 +1,204 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/*
+Color palette:
+Text: #d5c4b1
+*/
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
 
 body {
-  margin: 0;
+  background-color: #dcc57d;
+  font-family: "Jersey 10", sans-serif;
+  font-style: normal;
+  max-width: 100%;
+  letter-spacing: 1px;
+}
+
+/**/
+
+header{
+  background-color: #382832;
+  border-radius: 20px;
+  display: block;
+}
+
+#navigatie {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  align-items: center;
+  gap: 30px; 
+  margin-top: 20px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#navigatie ul{
+  display: flex;
+  margin: 0;
+  padding: 0;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+#navigatie li {
+  list-style: none;
+  padding-right: 30px;
+  font-size: 32px;
+  color: #d5c4b1;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
+#navigatie li a{
+  color: #d5c4b1;
 }
 
-.card {
-  padding: 2em;
+#navigatie li:hover, 
+#navigatie li a:hover{
+  color: #9b89a9;
 }
 
-.read-the-docs {
-  color: #888;
+/**/
+
+#search {
+  border: 2px #624e75 solid;
+  border-radius: 20px;
+  background-color: #9b89a9;
+  width: 100%; 
+  display: block;
+  margin: 20px 0 20px 0;
 }
 
+
+#search input,
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border: 0px;
+  margin: 5px;
+  background-color: #9b89a9;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+#search button {
+  border: 1px #624e75 solid;
+  border-radius: 20px;
+  background-color: #624e75;
+  color: #9b89a9;
+  cursor: pointer;
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;       
+  padding: 10px 20px; 
 }
+
+#search form {
+  display: flex;
+}
+
+#search input {
+  padding-left: 10px;
+  flex: 1;
+}
+
+#search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin: 30px auto;
+  flex-direction: column;
+}
+
+#search input:focus {
+  outline: none;
+}
+
+#search input::placeholder {
+  color: #624e75;
+}
+
+#search button:hover {
+  border: 1px #352247 solid;
+  background-color: #352247;
+}
+
+.beschrijving{
+  color:#947755;
+}
+
+/**/
+
+/*Misschien hier foto plaatsen van pokemon die piept*/
+.pokemon-list{
+  border: 1px #382832 solid;
+  background-color: #382832;
+  border-radius: 15px;
+  margin-bottom: 60px;
+}
+
+.FAVORIETEN{
+  border: 1px #382832 solid;
+  background-color: #382832;
+  border-radius: 15px;
+}
+
+.pokemon-list, .FAVORIETEN{
+  color: #d5c4b1;
+}
+
+/**/
+
+h1{
+  margin-left: 30px;
+}
+
+p{
+  font-size: 24px;
+  color: #d5c4b1;
+}
+
+/*Images: */
+
+#pokemon-all{
+  position: relative;
+  left: 400px;
+  top: 50px;
+}
+
+#pokemon-logo{
+  margin: 10px;
+}
+
+#pokemon-search{
+  width: 300px;
+  margin-left: 200px;
+}
+
+#pokemongroup{
+  border-radius: 30px;
+}
+
+/**/
+
+footer{
+  text-align: center;
+  border: 1px #382832 solid;
+  background-color: #382832;
+  border-radius: 20px;
+  color: #d5c4b1;
+}
+
+.list{
+  display: flex;
+  justify-content:space-around;
+  margin: 0 10px;
+}
+
+.item-one, .item-two, .item-three, .item-four, .item-five{
+  border: 5px #624e75 solid;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+#intro{
+  display: flex;
+}
+
+#test{
+  margin: -30px;
+  margin-top: 10px;
+}
+
