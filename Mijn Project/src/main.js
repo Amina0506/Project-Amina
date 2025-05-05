@@ -1,24 +1,28 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+// data ophalen uit de API
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
+  .then(response => response.json())
+  .then(data => {
+    const pokemonList = data.results;
+    pokemonList.forEach(pokemon => {
+      fetchPokemonDetails(pokemon.url);
+    });
+  });
 
-setupCounter(document.querySelector('#counter'))
+  function fetchPokemonDetails(url) {
+    fetch(url)
+      .then(response => response.json())
+      .then(pokemon => {
+        const name = pokemon.name;
+        const image = pokemon.sprites.front_default;
+   
+        // Voeg toe aan je HTML
+        const container = document.getElementById('pokemon-container');
+        const card = document.createElement('div');
+        card.innerHTML = `
+  <h3>${name}</h3>
+  <img src="${image}" alt="${name}">
+        `;
+        container.appendChild(card);
+      });
+  }
