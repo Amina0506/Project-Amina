@@ -31,6 +31,7 @@ header{
   display: flex;
   margin: 0;
   padding: 0;
+  flex: 1;
 }
 
 #navigatie li {
@@ -38,6 +39,10 @@ header{
   padding-right: 30px;
   font-size: 32px;
   color: #d5c4b1;
+}
+
+#language{
+  margin-left: auto;
 }
 
 #navigatie li a{
@@ -150,9 +155,8 @@ p{
 /*Images: */
 
 #pokemon-all{
+  display: flex;
   position: relative;
-  left: 400px;
-  top: 50px;
 }
 
 #pokemon-logo{
