@@ -1,13 +1,207 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/main.js">
+</head>
+
+<body>
+    <header>
+        <nav id="navigatie">
+            <img src="images/pokemonlogo.png" alt="" width="150px" id="pokemon-logo">
+
+            <ul>
+                <li><U>MENU</U></li>
+                <li><a href="#pokemons">POKEMONS</a></li>
+                <li><a href="#favorieten">FAVORIETEN</a></li>
+                <li id="language">EN</li>
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <div id="intro">
+        <div id="peekingpokemon"><img src="images/peekingpokemon.png" alt="" width="200px" id="test"></div>
+
+        <div id="search-container">
+            <img src="images/pokemongroup.jpg" alt="" width="500px" id="pokemongroup">
+            <!-- Div voor research met foto aan de rechterkant -->
+            <div id="search">
+                <!-- foto van loep toevoegen -->
+                <form action="/zoekresultaat.html" method="get">
+                    <input type="text" name="zoekterm" maxlength="50" size="1">
+                    <button type="submit">Zoeken</button>
+                </form>
+            </div>
+            <h2 class="beschrijving">Zoek naar uw favoriete Pokemons en ontdek...!</h2>
+        </div>
+    </div>
+    <br>
+
+    <div class="pokemon-list" id="pokemons">
+        <h1>POKEMONS</h1>
+
+        <div class="list">
+            <div class="item-one">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-two">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-three">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-four">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-five">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+        </div>
+
+        <div class="list">
+            <div class="item-one">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-two">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-three">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-four">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-five">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+        </div>
+
+        <div class="list">
+            <div class="item-one">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-two">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-three">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-four">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-five">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+        </div>
+
+        <div class="list">
+            <div class="item-one">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-two">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-three">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-four">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+
+            <div class="item-five">
+                <h2>Pikachu</h2>
+                <p>Info</p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="FAVORIETEN" id="favorieten">
+        <h1>FAVORIETEN</h1>
+
+        <p>Hier vinden jullie jullie favoriete Pokemons!</p>
+    </div>
+
+    <br>
+    <br>
+    <br><br><br><br><br><br><br><br><br><br>
+
+    <!--Foto misschien verplaatsen naar naast search bar-->
+    <img src="images/pokemonthree.png" alt="" width="400px" id="pokemon-all">
+    <br>
+
+    <footer>
+        <p>Copyright 2025 - Amina Saidi</p>
+    </footer>
+
+</body>
+
+
+
+<script>
+    const getPokemonInfo = async (naam) => {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${naam}`);
+        const data = await response.json();
+
+        const naamPokemon = data.name;
+        const types = data.types.map(t => t.type.name).join(" / ");
+        const lengte = data.height / 10; // meter
+        const gewicht = data.weight / 10; // kg
+        const sprite = data.sprites.front_default;
+
+        console.log(`Naam: ${naamPokemon}`);
+        console.log(`Type: ${types}`);
+        console.log(`Lengte: ${lengte} m`);
+        console.log(`Gewicht: ${gewicht} kg`);
+    };
+
+    getPokemonInfo("bulbasaur");
+
+</script>
+
 </html>
