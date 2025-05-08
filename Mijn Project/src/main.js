@@ -15,6 +15,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         const div = itemDivs[index];
         if (div) {
           div.innerHTML = `
+          <img src="images/heart-symbol.png" alt="" style="width:20px; display:flex; justify-content:flex-end;">
 <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" style="width:200px;">
 <h2>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
             `;
