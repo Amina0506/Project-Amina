@@ -191,6 +191,10 @@ p{
 /*Images: */
 
 #pokemon-all{
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  top: 55px;
 }
 
 #pokemon-logo{
