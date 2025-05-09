@@ -192,7 +192,7 @@ p{
 
 #pokemon-all{
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   position: relative;
   top: 55px;
 }
@@ -226,8 +226,9 @@ footer{
 #backtotop{
   color: #947755;
   display: flex;
-  justify-content: center;
+  position: relative;
   font-size: 24px;
-  margin-bottom: 20px;
-  padding: 0;
+  align-items: end;
+  bottom: 70px;
+  padding-left: 10px;
 }
