@@ -212,9 +212,6 @@ p{
 
 /**/
 
-/* Knop toegevoegd om direct boven de pagina te belanden */
-
-
 footer{
   text-align: center;
   border: 1px #382832 solid;
@@ -223,6 +220,7 @@ footer{
   color: #d5c4b1;
 }
 
+/* Knop toegevoegd om direct boven de pagina te belanden */
 #backtotop{
   color: #947755;
   display: flex;
