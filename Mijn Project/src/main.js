@@ -1,7 +1,6 @@
-// Alle item-divs selecteren
 const itemDivs = document.querySelectorAll('.pokemon-list .list > div');
 
-// Haal 20 Pokémon op
+// 20 Pokemons ophalen
 fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
   .then(response => response.json())
   .then(data => {
@@ -24,7 +23,6 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         }
       });
 
-      // Voeg een eventlistener toe aan alle harticoontjes na het toevoegen aan de DOM
       const heartIcons = document.querySelectorAll('.heart');
       heartIcons.forEach(heartIcon => {
         heartIcon.addEventListener('click', function () {
@@ -35,5 +33,8 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           }
         });
       });
+
+
+
     });
   });
