@@ -192,7 +192,7 @@ p{
 
 #pokemon-all{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   position: relative;
   top: 55px;
 }
@@ -220,13 +220,20 @@ footer{
   color: #d5c4b1;
 }
 
+footer p{
+  margin: 10px;
+}
+
 /* Knop toegevoegd om direct boven de pagina te belanden */
 #backtotop{
   color: #947755;
   display: flex;
   position: relative;
+  justify-content: center;
   font-size: 24px;
-  align-items: end;
-  bottom: 70px;
-  padding-left: 10px;
+  margin: 20px;
+}
+
+#backtotop:hover{
+  color:#352247;
 }
