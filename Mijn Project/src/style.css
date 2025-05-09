@@ -151,6 +151,7 @@ h1{
 p{
   font-size: 24px;
   color: #d5c4b1;
+  padding-left: 30px;
 }
 
 /*Images: */
@@ -214,4 +215,10 @@ footer{
 #test{
   margin: -30px;
   margin-top: 10px;
+}
+
+
+.favorites{
+  display: flex;
+  justify-content: flex-end;
 }
