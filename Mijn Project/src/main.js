@@ -15,11 +15,25 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         const div = itemDivs[index];
         if (div) {
           div.innerHTML = `
-          <img src="images/heart-symbol.png" alt="" style="width:20px; display:flex; justify-content:flex-end;">
-<img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" style="width:200px;">
-<h2>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
-            `;
+            <div class="favorites">
+              <img src="images/heart-symbol.png" alt="" width="30px" class="heart" style="cursor: pointer;">
+            </div>
+            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" style="width:200px;">
+            <h2>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+          `;
         }
+      });
+
+      // Voeg een eventlistener toe aan alle harticoontjes na het toevoegen aan de DOM
+      const heartIcons = document.querySelectorAll('.heart');
+      heartIcons.forEach(heartIcon => {
+        heartIcon.addEventListener('click', function () {
+          if (heartIcon.src.includes('heart-symbol.png')) {
+            heartIcon.src = 'images/heartsymbol-full.png';
+          } else {
+            heartIcon.src = 'images/heart-symbol.png';
+          }
+        });
       });
     });
   });
