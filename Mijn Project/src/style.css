@@ -55,6 +55,10 @@ header{
   color: #9b89a9;
 }
 
+#menu {
+  cursor: pointer;
+}
+
 /**/
 
 #intro{
@@ -74,7 +78,6 @@ header{
   display: block;
   margin: 20px 0 20px 0;
 }
-
 
 #search input,
 button {
