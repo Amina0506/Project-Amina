@@ -30,16 +30,44 @@ header{
   margin-top: 20px;
 }
 
+.sub-menu {
+  background-color: #444;
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  width: 620px;
+  height: 220px;
+  visibility: hidden;
+  position: absolute;
+  left: 215px;
+  padding: 10px;
+}
+
+.menu-description{
+  padding-left: 10px;
+}
+
 #navigatie ul{
   display: flex;
   margin: 0;
   padding: 0;
   flex: 1;
+  list-style: none;
+}
+
+#navigatie a{
+  color: #fff;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+}
+
+#navigatie li:hover .sub-menu {
+  visibility: visible;
 }
 
 #navigatie li {
   list-style: none;
-  padding-right: 30px;
+  margin-right: 30px;
   font-size: 32px;
   color: #d5c4b1;
 }
@@ -57,6 +85,8 @@ header{
 #navigatie li a:hover{
   color: #9b89a9;
 }
+
+
 
 /**/
 
