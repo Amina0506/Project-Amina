@@ -38,7 +38,41 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
       //alert('Pas op, als je deze pagina refresht verdwijnen al jouw favorieten!')
         
       
-
+      /* Voor het random genereren van een Pokemon*/
+      const pokemons = [
+        {
+          name: "Pikachu",
+          img: "images/pikachu.png",
+          desc: "Een elektrische muis Pokémon."
+        },
+        {
+          name: "Bulbasaur",
+          img: "images/bulbasaur.png",
+          desc: "Een gras-type Pokémon met een zaad op zijn rug."
+        },
+        {
+          name: "Charmander",
+          img: "images/charmander.png",
+          desc: "Een vuur-type Pokémon met een vlam aan zijn staart."
+        },
+        {
+          name: "Squirtle",
+          img: "images/squirtle.png",
+          desc: "Een water-type schildpad Pokémon."
+        }
+      ];
+      
+      let index = 0;
+      
+      document.getElementById("next-btn").addEventListener("click", () => {
+        index = (index + 1) % pokemons.length;
+        const p = pokemons[index];
+      
+        document.getElementById("pokemon-name").textContent = p.name;
+        document.getElementById("pokemoncard-img").src = p.img;
+        document.getElementById("pokemon-desc").textContent = p.desc;
+      });
+      
 
 
     });

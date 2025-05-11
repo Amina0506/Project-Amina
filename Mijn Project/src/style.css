@@ -165,6 +165,59 @@ button {
 
 /**/
 
+#pokemon-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 80px 40px;
+  border-radius: 10px;
+  gap: 20px;
+}
+
+.left{
+  flex: 1;
+  display: flex;
+  flex-direction: column;   
+  justify-content: center;  
+  align-items: center;      
+  gap: 10px;              
+  height: 100%;    
+}
+
+.right{
+  flex-shrink: 0;
+}
+
+#pokemoncard-img{
+  width: 400px;
+  height: 400px;
+}
+
+#next-btn{
+  margin-top: 10px 20px;
+  padding: 20px;
+  background-color: #624e75;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family:inherit;
+  font-size: 32px;
+  color:#dcc57d;
+}
+
+#pokemon-name{
+  color: #2d1b13;
+  font-size: 140px;
+  margin-bottom: 0;
+}
+
+#pokemon-desc{
+  color: #382832;
+  font-size: 50px;
+}
+
+/**/
+
 .list{
   display: flex;
   justify-content:space-around;
