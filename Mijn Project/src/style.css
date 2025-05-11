@@ -15,7 +15,7 @@ body {
   letter-spacing: 1px;
 }
 
-/**/
+/*Navigatie*/
 
 header{
   background-color: #382832;
@@ -86,9 +86,7 @@ header{
   color: #9b89a9;
 }
 
-
-
-/**/
+/*Search bar*/
 
 #intro{
   display: flex;
@@ -163,7 +161,7 @@ button {
   color:#947755;
 }
 
-/**/
+/*Interactieve Pokemon sectie*/
 
 #pokemon-card{
   display: flex;
@@ -216,7 +214,7 @@ button {
   font-size: 50px;
 }
 
-/**/
+/*Lijst met de Pokemons en de favorieten*/
 
 .list{
   display: flex;
@@ -224,7 +222,6 @@ button {
   margin: 0 10px;
 }
 
-/*Misschien hier foto plaatsen van pokemon die piept*/
 .pokemon-list{
   border: 1px #382832 solid;
   background-color: #382832;
@@ -273,7 +270,7 @@ p{
   padding-left: 30px;
 }
 
-/*Images: */
+/*Afbeeldingen*/
 
 #pokemon-all{
   display: flex;
@@ -295,7 +292,7 @@ p{
   border-radius: 30px;
 }
 
-/**/
+/*Footer*/
 
 footer{
   text-align: center;
@@ -309,7 +306,7 @@ footer p{
   margin: 10px;
 }
 
-/* Knop toegevoegd om direct boven de pagina te belanden */
+/*Knop toegevoegd om direct boven de pagina te belanden*/
 #backtotop{
   color: #947755;
   display: flex;
