@@ -35,6 +35,25 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         });
       });
 
+      /*Functie om de favorieten bij te houden*/
+      function isFavorite(id) {
+        const favs = JSON.parse(localStorage.getItem('pokemons')) || [];
+        return favs.include(id);
+      }
+
+      function toggleFavorite(id, button){
+        let favs = JSON.parse(localStorage.getItem('pokemons')) || [];
+
+        if(favs.includes(id)){
+          favs = favs.filter(favId => favId !== id);
+          button.classList.remove('favorieten');
+        }else{
+          favs.push(id);
+          button.classList.add('favorieten');
+        }
+
+        localStorage.setItem('pokemons', JSON.stringify(favs));
+      }
       
       //alert('Pas op, als je deze pagina refresht verdwijnen al jouw favorieten!')
         
