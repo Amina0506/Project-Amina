@@ -23,6 +23,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         }
       });
 
+      /*Voor de likes*/
       const heartIcons = document.querySelectorAll('.heart');
       heartIcons.forEach(heartIcon => {
         heartIcon.addEventListener('click', function () {
