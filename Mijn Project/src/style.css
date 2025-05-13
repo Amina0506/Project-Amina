@@ -234,8 +234,7 @@ button {
 #favorieten-lijst{
   display: flex;
   flex-wrap: wrap;
-  margin: 0 10px;
-  justify-content: space-evenly;
+  margin: 0 23px;
 }
 
 #favorites > div{
