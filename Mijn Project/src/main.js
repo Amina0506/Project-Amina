@@ -14,9 +14,6 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         const div = itemDivs[index];
         if (div) {
           div.innerHTML = `
-            <div class="favorites">
-              <img src="images/heart-symbol.png" alt="" width="30px" class="heart" style="cursor: pointer;">
-            </div>
             <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" style="width:200px;">
             <h2>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
           `;
@@ -24,39 +21,41 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
       });
 
       /*Voor de likes*/
-      const heartIcons = document.querySelectorAll('.heart');
-      heartIcons.forEach(heartIcon => {
-        heartIcon.addEventListener('click', function () {
-          if (heartIcon.src.includes('heart-symbol.png')) {
-            heartIcon.src = 'images/heartsymbol-full.png';
-          } else {
-            heartIcon.src = 'images/heart-symbol.png';
-          }
-        });
-      });
-
-      /*Functie om de favorieten bij te houden*/
-      function isFavorite(id) {
-        const favs = JSON.parse(localStorage.getItem('pokemons')) || [];
-        return favs.include(id);
-      }
-
-      function toggleFavorite(id, button){
-        let favs = JSON.parse(localStorage.getItem('pokemons')) || [];
-
-        if(favs.includes(id)){
-          favs = favs.filter(favId => favId !== id);
-          button.classList.remove('favorieten');
-        }else{
-          favs.push(id);
-          button.classList.add('favorieten');
-        }
-
-        localStorage.setItem('pokemons', JSON.stringify(favs));
-      }
+      const favorietenSectie = document.getElementById('favorieten');
+      const kaarten = document.querySelectorAll('.list > div');
       
-      //alert('Pas op, als je deze pagina refresht verdwijnen al jouw favorieten!')
-        
+      kaarten.forEach(kaart => {
+        kaart.style.position = 'relative';
+        const heart = document.createElement('img');
+        heart.classList.add('heart');
+        heart.src = 'images/heart-symbol.png';
+
+        //Stijl van de afbeelding:
+        heart.style.position = 'absolute';
+        heart.style.top = '10px';
+        heart.style.right = '10px';
+        heart.style.width = '30px';
+        heart.style.cursor = 'pointer';
+
+        kaart.appendChild(heart);
+
+        heart.addEventListener('click', function() {
+          const isFavoriet = heart.src.includes('heart-symbol.png');
+
+          heart.src = isFavoriet ? 'images/heartsymbol-full.png' : 'images/heart-symbol.png';
+          
+          if(isFavoriet){
+            const clone = kaart.cloneNode(true);
+            const cloneHeart = clone.querySelector('.heart');
+            if(cloneHeart) cloneHeart.remove();
+
+            const placeholder = favorietenSectie.querySelector('p');
+            if(placeholder) placeholder.remove();
+
+            favorietenSectie.appendChild(clone);
+          }
+        }) 
+      })
       
       /* Voor het random genereren van een Pokemon*/
       const pokemons = [
