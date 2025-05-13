@@ -210,6 +210,40 @@ button {
   font-size: 50px;
 }
 
+/*Tabel*/
+
+section h1{
+  display: flex;
+  justify-content: center;
+  color: #2d1b13;
+  font-size: 2em;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+  background-color: #382832;
+  color:#d5c4b1;
+  border-radius: 10px;
+  margin: 0 0 60px;
+}
+
+th{
+  font-size: 24px;
+  letter-spacing: 2px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+td{
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  text-transform: capitalize;
+  border-right: 2px #624e75 solid;
+}
+
 /*Lijst met de Pokemons en de favorieten*/
 
 .list{
