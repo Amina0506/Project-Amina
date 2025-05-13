@@ -244,6 +244,10 @@ td{
   border-right: 2px #624e75 solid;
 }
 
+:nth-child(6){
+  border: transparent;
+}
+
 /*Lijst met de Pokemons en de favorieten*/
 
 .list{
