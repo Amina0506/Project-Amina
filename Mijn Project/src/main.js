@@ -23,11 +23,11 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           div.innerHTML = `
             <img src="${pokemon.sprites.front_default}" style="width:200px;">
             <h2> ${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
-            <p class="info"><strong style="color:#2d1b13">Type:</strong> ${types}</p>
-            <p class="info"><strong style="color:#2d1b13">Abilities:</strong> ${abilities}</p>
-            <p class="info"><strong style="color:#2d1b13">Hoogte:</strong> ${height} m</p>
-            <p class="info"><strong style="color:#2d1b13">Gewicht:</strong> ${weight} kg</p>
-            <p class="info"><strong style="color:#2d1b13">XP:</strong> ${xp}</p>
+            <p class="info" style="font-size:20px;"><strong style="color:#2d1b13">Type:</strong> ${types}</p>
+            <p class="info" style="font-size:20px;"><strong style="color:#2d1b13">Abilities:</strong> ${abilities}</p>
+            <p class="info" style="font-size:20px;"><strong style="color:#2d1b13">Hoogte:</strong> ${height} m</p>
+            <p class="info" style="font-size:20px;"><strong style="color:#2d1b13">Gewicht:</strong> ${weight} kg</p>
+            <p class="info" style="font-size:20px;"><strong style="color:#2d1b13">XP:</strong> ${xp}</p>
           `
           ;
         }

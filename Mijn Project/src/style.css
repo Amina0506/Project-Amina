@@ -271,8 +271,6 @@ h1{
 h2{
   display: flex;
   justify-content: center;
-  border: 3px #2d1b13 solid;
-  border-radius: 70px;
 }
 
 p{
