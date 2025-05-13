@@ -9,15 +9,15 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
     // Voor elke Pokémon details ophalen
     const promises = pokemonList.map(pokemon => fetch(pokemon.url).then(res => res.json()));
     Promise.all(promises).then(pokemonDetails => {
-      // Itereer over de bestaande divs en vul ze met data
+      // Itereert over de bestaande divs en vult ze met data
       pokemonDetails.forEach((pokemon, index) => {
         const div = itemDivs[index];
         if (div) {
 
           const types = pokemon.types.map(t => t.type.name).join(', ');
           const abilities = pokemon.abilities.map(a => a.ability.name).join(', ');
-          const height = pokemon.height/10;
-          const weight = pokemon.weight/10;
+          const height = pokemon.height / 10;
+          const weight = pokemon.weight / 10;
           const xp = pokemon.base_experience;
 
           div.innerHTML = `
@@ -29,44 +29,46 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
             <p class="info" style="font-size:20px;"><strong style="color:#2d1b13">Gewicht:</strong> ${weight} kg</p>
             <p class="info" style="font-size:20px;"><strong style="color:#2d1b13">XP:</strong> ${xp}</p>
           `
-          ;
+            ;
         }
       });
 
-      /*Sorteren*/
-      
-    
+      //Sorteren
 
-      /*Functie voor de tabel*/
+
+
+      //Functie voor de tabel
       async function fetchAndDisplayPokemonData() {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20');
         const data = await response.json();
         const tableBody = document.getElementById("personages-section");
-    
+
         for (const pokemon of data.results) {
-            const pokemonDetails = await fetch(pokemon.url).then(res => res.json());
-    
-            const row = document.createElement("tr");
-            row.innerHTML = `
+          const pokemonDetails = await fetch(pokemon.url).then(res => res.json());
+
+          const row = document.createElement("tr");
+          row.innerHTML = `
                 <td>${pokemonDetails.name}</td>
                 <td>${pokemonDetails.types.map(t => t.type.name).join(", ")}</td>
                 <td>${pokemonDetails.abilities.map(a => a.ability.name).join(", ")}</td>
-                <td>${pokemonDetails.height/10}m</td>
-                <td>${pokemonDetails.weight/10}kg</td>
+                <td>${pokemonDetails.height / 10}m</td>
+                <td>${pokemonDetails.weight / 10}kg</td>
                 <td>${pokemonDetails.base_experience}XP</td>
             `;
-            tableBody.appendChild(row);
+          tableBody.appendChild(row);
         }
-    }
-    
-    fetchAndDisplayPokemonData();
-    
-      
+      }
 
-      /*Voor de likes*/
+      fetchAndDisplayPokemonData();
+
+
+
+      //Voor de likes
       const favorietenSectie = document.getElementById('favorieten');
       const favorietenLijst = document.getElementById('favorieten-lijst');
       const kaarten = document.querySelectorAll('.list > div');
+
+      const toegevoegdeFavorieten = new Set();
 
       kaarten.forEach(kaart => {
         kaart.style.position = 'relative';
@@ -74,7 +76,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         heart.classList.add('heart');
         heart.src = 'images/heart-symbol.png';
 
-        //Stijl van de afbeelding:
+        // Stijl van het hartje
         heart.style.position = 'absolute';
         heart.style.top = '10px';
         heart.style.right = '10px';
@@ -83,16 +85,20 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
         kaart.appendChild(heart);
 
-        //Functie na het klikken op het icoontje
+        //Na het klikken op het hart
         heart.addEventListener('click', function () {
           const isFavoriet = heart.src.includes('heart-symbol.png');
-
           heart.src = isFavoriet ? 'images/heartsymbol-full.png' : 'images/heart-symbol.png';
 
-          if (isFavoriet) {
-            const clone = kaart.cloneNode(true);
-            const cloneHeart = clone.querySelector('.heart')
+          const kaartID = kaart.querySelector('h2')?.textContent || kaart.innerHTML;
 
+          if (isFavoriet) {
+            //Om niet twee keer dezelfde kaart in de favorieten te hebben
+            if (toegevoegdeFavorieten.has(kaartID)) return;
+            toegevoegdeFavorieten.add(kaartID);
+
+            const clone = kaart.cloneNode(true);
+            const cloneHeart = clone.querySelector('.heart');
             if (cloneHeart) cloneHeart.remove();
 
             const placeholder = favorietenSectie.querySelector('p');
@@ -106,11 +112,26 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
             clone.style.position = 'relative';
 
             favorietenLijst.appendChild(clone);
-          }
-        })
-      })
+          } else {
+            // Optioneel: verwijderen uit favorieten bij opnieuw klikken
+            toegevoegdeFavorieten.delete(kaartID);
+            [...favorietenLijst.children].forEach(child => {
+              if (child.querySelector('h2')?.textContent === kaartID) {
+                child.remove();
+              }
+            });
 
-      /* Voor het random genereren van een Pokemon*/
+            if (favorietenLijst.children.length === 0) {
+              const p = document.createElement('p');
+              p.textContent = "Er is momenteel nog niets te zien...";
+              favorietenSectie.insertBefore(p, favorietenLijst);
+            }
+          }
+        });
+      });
+
+
+      // Voor het random genereren van een Pokemon
       const pokemons = [
         {
           name: "Pikachu",
