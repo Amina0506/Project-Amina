@@ -13,10 +13,23 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
       pokemonDetails.forEach((pokemon, index) => {
         const div = itemDivs[index];
         if (div) {
+
+          const types = pokemon.types.map(t => t.type.name).join(', ');
+          const abilities = pokemon.abilities.map(a => a.ability.name).join(', ');
+          const height = pokemon.height/10;
+          const weight = pokemon.weight/10;
+          const xp = pokemon.base_experience;
+
           div.innerHTML = `
-            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" style="width:200px;">
-            <h2>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
-          `;
+            <img src="${pokemon.sprites.front_default}" style="width:200px;">
+            <h2> ${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+            <p class="info"><strong style="color:#2d1b13">Type:</strong> ${types}</p>
+            <p class="info"><strong style="color:#2d1b13">Abilities:</strong> ${abilities}</p>
+            <p class="info"><strong style="color:#2d1b13">Hoogte:</strong> ${height} m</p>
+            <p class="info"><strong style="color:#2d1b13">Gewicht:</strong> ${weight} kg</p>
+            <p class="info"><strong style="color:#2d1b13">XP:</strong> ${xp}</p>
+          `
+          ;
         }
       });
 
