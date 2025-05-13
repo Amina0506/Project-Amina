@@ -33,6 +33,36 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         }
       });
 
+      /*Sorteren*/
+      
+    
+
+      /*Functie voor de tabel*/
+      async function fetchAndDisplayPokemonData() {
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20');
+        const data = await response.json();
+        const tableBody = document.getElementById("personages-section");
+    
+        for (const pokemon of data.results) {
+            const pokemonDetails = await fetch(pokemon.url).then(res => res.json());
+    
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${pokemonDetails.name}</td>
+                <td>${pokemonDetails.types.map(t => t.type.name).join(", ")}</td>
+                <td>${pokemonDetails.abilities.map(a => a.ability.name).join(", ")}</td>
+                <td>${pokemonDetails.height/10}m</td>
+                <td>${pokemonDetails.weight/10}kg</td>
+                <td>${pokemonDetails.base_experience}XP</td>
+            `;
+            tableBody.appendChild(row);
+        }
+    }
+    
+    fetchAndDisplayPokemonData();
+    
+      
+
       /*Voor de likes*/
       const favorietenSectie = document.getElementById('favorieten');
       const favorietenLijst = document.getElementById('favorieten-lijst');
@@ -114,8 +144,6 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         document.getElementById("pokemoncard-img").src = p.img;
         document.getElementById("pokemon-desc").textContent = p.desc;
       });
-
-
 
     });
   });
