@@ -225,7 +225,6 @@ table{
   margin-bottom: 40px;
   background-color: #382832;
   color:#d5c4b1;
-  border-radius: 10px;
   margin: 0 0 60px;
 }
 
@@ -234,6 +233,7 @@ th{
   letter-spacing: 2px;
   padding-top: 15px;
   padding-bottom: 15px;
+  background-color: #2d1b13;
 }
 
 td{
