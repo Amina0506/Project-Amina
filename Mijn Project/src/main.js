@@ -22,8 +22,9 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
       /*Voor de likes*/
       const favorietenSectie = document.getElementById('favorieten');
+      const favorietenLijst = document.getElementById('favorieten-lijst');
       const kaarten = document.querySelectorAll('.list > div');
-      
+
       kaarten.forEach(kaart => {
         kaart.style.position = 'relative';
         const heart = document.createElement('img');
@@ -39,24 +40,32 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
         kaart.appendChild(heart);
 
-        heart.addEventListener('click', function() {
+        heart.addEventListener('click', function () {
           const isFavoriet = heart.src.includes('heart-symbol.png');
 
           heart.src = isFavoriet ? 'images/heartsymbol-full.png' : 'images/heart-symbol.png';
-          
-          if(isFavoriet){
+
+          if (isFavoriet) {
             const clone = kaart.cloneNode(true);
-            const cloneHeart = clone.querySelector('.heart');
-            if(cloneHeart) cloneHeart.remove();
+            const cloneHeart = clone.querySelector('.heart')
+
+            if (cloneHeart) cloneHeart.remove();
 
             const placeholder = favorietenSectie.querySelector('p');
-            if(placeholder) placeholder.remove();
+            if (placeholder) placeholder.remove();
 
-            favorietenSectie.appendChild(clone);
+            clone.style.flex = '0 0 auto';
+            clone.style.width = '230px';
+            clone.style.border = '5px #624e75 solid';
+            clone.style.padding = '5px';
+            clone.style.boxSizing = 'border-box';
+            clone.style.position = 'relative';
+
+            favorietenLijst.appendChild(clone);
           }
-        }) 
+        })
       })
-      
+
       /* Voor het random genereren van een Pokemon*/
       const pokemons = [
         {
@@ -80,18 +89,18 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           desc: "Een water-type schildpad Pokémon."
         }
       ];
-      
+
       let index = 0;
-      
+
       document.getElementById("next-btn").addEventListener("click", () => {
         index = (index + 1) % pokemons.length;
         const p = pokemons[index];
-      
+
         document.getElementById("pokemon-name").textContent = p.name;
         document.getElementById("pokemoncard-img").src = p.img;
         document.getElementById("pokemon-desc").textContent = p.desc;
       });
-      
+
 
 
     });

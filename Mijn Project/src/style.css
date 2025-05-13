@@ -231,6 +231,20 @@ button {
   border-radius: 15px;
 }
 
+#favorieten-lijst{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 10px;
+  justify-content: space-evenly;
+}
+
+#favorites > div{
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  width: 150px;
+}
+
 .pokemon-list, .FAVORIETEN{
   color: #d5c4b1;
 }
@@ -250,8 +264,6 @@ button {
 }
 
 .favorites{
-  display: flex;
-  justify-content: flex-end;
 }
 
 /**/
