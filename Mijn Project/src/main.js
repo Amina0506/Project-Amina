@@ -40,6 +40,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
         kaart.appendChild(heart);
 
+        //Functie na het klikken op het icoontje
         heart.addEventListener('click', function () {
           const isFavoriet = heart.src.includes('heart-symbol.png');
 
@@ -71,22 +72,22 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         {
           name: "Pikachu",
           img: "images/pikachu.png",
-          desc: "Een elektrische muis Pokémon."
+          desc: "Zorgt altijd voor een schok van energie!"
         },
         {
           name: "Bulbasaur",
           img: "images/bulbasaur.png",
-          desc: "Een gras-type Pokémon met een zaad op zijn rug."
+          desc: "Groeit stilletjes uit tot een groene legende."
         },
         {
           name: "Charmander",
           img: "images/charmander.png",
-          desc: "Een vuur-type Pokémon met een vlam aan zijn staart."
+          desc: "Klein lijf, grote vlam. Pas op!"
         },
         {
           name: "Squirtle",
           img: "images/squirtle.png",
-          desc: "Een water-type schildpad Pokémon."
+          desc: "Spat rond met stijl en straal."
         }
       ];
 
