@@ -113,7 +113,6 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
             favorietenLijst.appendChild(clone);
           } else {
-            // Optioneel: verwijderen uit favorieten bij opnieuw klikken
             toegevoegdeFavorieten.delete(kaartID);
             [...favorietenLijst.children].forEach(child => {
               if (child.querySelector('h2')?.textContent === kaartID) {
