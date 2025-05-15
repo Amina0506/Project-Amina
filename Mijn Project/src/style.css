@@ -163,7 +163,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 30px 40px 80px 40px;
+  margin: 0px 40px 80px 40px;
   border-radius: 10px;
   gap: 20px;
 }
