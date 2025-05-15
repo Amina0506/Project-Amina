@@ -62,6 +62,45 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
       fetchAndDisplayPokemonData();
 
 
+      //Pokémon zoeken
+      const zoekInput = document.querySelector('input[name="zoekterm"]');
+      const zoekButton = document.querySelector('#search button');
+
+      zoekButton.addEventListener('click', () => {
+        const zoekterm = zoekInput.value.trim().toLowerCase();
+        const rijen = document.querySelectorAll('#personages-section tr');
+
+        let gevonden = false;
+
+        rijen.forEach(rij => {
+          const naamCel = rij.querySelector('td');
+          if (naamCel && naamCel.textContent.toLowerCase() === zoekterm) {
+            //Scroll naar de rij
+            rij.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            //Na het zoeken van een Pokémon wordt de rij van deze kleur
+            rij.style.backgroundColor = '#9b89a9';
+
+            //Vak van de tabel wordt gekleurd voor 3s
+            setTimeout(() => {
+              rij.style.backgroundColor = '';
+            }, 3000);
+
+            gevonden = true;
+          }
+        });
+
+        if (!gevonden) {
+          alert(`Geen Pokémon gevonden met de naam "${zoekterm}". Zoek verder!`);
+        }
+      });
+
+      //Om te zoeken met 'Enter'
+      zoekInput.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter'){
+          zoekButton.click();
+        }
+      })
 
       //Voor de likes
       const favorietenSectie = document.getElementById('favorieten');
