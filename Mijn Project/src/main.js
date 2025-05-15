@@ -33,6 +33,89 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         }
       });
 
+      //Pokémon zoeken
+      const zoekInput = document.querySelector('input[name="zoekterm"]');
+      const zoekButton = document.querySelector('#search button');
+
+      //Probleem als men een Pokémon in een gefilterde tabel zoekt,
+      //kan het zijn dat de Pokémon niet verschijnt, dit is de oplossing
+      zoekButton.addEventListener('click', () => {
+        const zoekterm = zoekInput.value.trim().toLowerCase();
+        const match = currentDetails.find(p => p.name.toLowerCase() === zoekterm);
+
+        if (match) {
+          updateTable([match]);
+
+          //Om naar de gezochte Pokémon te scrollen
+          setTimeout(() => {
+            const rij = document.querySelector('#personages-section tr');
+            rij.style.backgroundColor = '#9b89a9';
+            rij.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            setTimeout(() => {
+              rij.style.backgroundColor = '';
+            }, 3000);
+          }, 50);
+        } else {
+          alert(`Geen Pokémon gevonden met de naam "${zoekterm}". Zoek verder!`);
+        }
+      });
+
+
+      //Om te zoeken met 'Enter'
+      zoekInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          zoekButton.click();
+        }
+      })
+
+      // Voor het random genereren van een Pokemon
+      const pokemons = [
+        {
+          name: "Pikachu",
+          img: "images/pikachu.png",
+          desc: {
+            nl: "Zorgt altijd voor een schok van energie!",
+            en: "Always delivers a shock of energy!"
+          }
+        },
+        {
+          name: "Bulbasaur",
+          img: "images/bulbasaur.png",
+          desc: {
+            nl: "Groeit stilletjes uit tot een groene legende.",
+            en: "Quietly grows into a green legend."
+          }
+        },
+        {
+          name: "Charmander",
+          img: "images/charmander.png",
+          desc: {
+            nl: "Klein lijf, grote vlam. Pas op!",
+            en: "Small body, big flame. Watch out!"
+          }
+        },
+        {
+          name: "Squirtle",
+          img: "images/squirtle.png",
+          desc: {
+            nl: "Spat rond met stijl en straal.",
+            en: "Splashes around with style and spray."
+          }
+        }
+      ];
+
+      let index = 0;
+
+      document.getElementById("next-btn").addEventListener("click", () => {
+        index = (index + 1) % pokemons.length;
+        const p = pokemons[index];
+
+        document.getElementById("pokemon-name").textContent = p.name;
+        document.getElementById("pokemoncard-img").src = p.img;
+        document.getElementById("pokemon-desc").textContent = p.desc[currentLanguage];
+      });
+
       //Sorteren en filteren
       let currentDetails = [...pokemonDetails]; // Bewaar alle opgehaalde details
 
@@ -79,8 +162,6 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
       updateTable(currentDetails);
 
-
-
       //Functie voor de tabel
       async function fetchAndDisplayPokemonData() {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20');
@@ -104,44 +185,6 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
       }
 
       fetchAndDisplayPokemonData();
-
-
-      //Pokémon zoeken
-      const zoekInput = document.querySelector('input[name="zoekterm"]');
-      const zoekButton = document.querySelector('#search button');
-
-      //Probleem als men een Pokémon in een gefilterde tabel zoekt,
-      //kan het zijn dat de Pokémon niet verschijnt, dit is de oplossing
-      zoekButton.addEventListener('click', () => {
-        const zoekterm = zoekInput.value.trim().toLowerCase();
-        const match = currentDetails.find(p => p.name.toLowerCase() === zoekterm);
-
-        if (match) {
-          updateTable([match]);
-
-          //Om naar de gezochte Pokémon te scrollen
-          setTimeout(() => {
-            const rij = document.querySelector('#personages-section tr');
-            rij.style.backgroundColor = '#9b89a9';
-            rij.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            setTimeout(() => {
-              rij.style.backgroundColor = '';
-            }, 3000);
-          }, 50);
-        } else {
-          alert(`Geen Pokémon gevonden met de naam "${zoekterm}". Zoek verder!`);
-        }
-      });
-
-
-      //Om te zoeken met 'Enter'
-      zoekInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          zoekButton.click();
-        }
-      })
-
 
       //Voor de likes
       const favorietenSectie = document.getElementById('favorieten');
@@ -209,7 +252,6 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         favorietenLijst.appendChild(clone);
       }
 
-
       kaarten.forEach(kaart => {
         kaart.style.position = 'relative';
         const heart = document.createElement('img');
@@ -259,55 +301,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         });
       });
 
-
       let currentLanguage = 'nl';
-
-      // Voor het random genereren van een Pokemon
-      const pokemons = [
-        {
-          name: "Pikachu",
-          img: "images/pikachu.png",
-          desc: {
-            nl: "Zorgt altijd voor een schok van energie!",
-            en: "Always delivers a shock of energy!"
-          }
-        },
-        {
-          name: "Bulbasaur",
-          img: "images/bulbasaur.png",
-          desc: {
-            nl: "Groeit stilletjes uit tot een groene legende.",
-            en: "Quietly grows into a green legend."
-          }
-        },
-        {
-          name: "Charmander",
-          img: "images/charmander.png",
-          desc: {
-            nl: "Klein lijf, grote vlam. Pas op!",
-            en: "Small body, big flame. Watch out!"
-          }
-        },
-        {
-          name: "Squirtle",
-          img: "images/squirtle.png",
-          desc: {
-            nl: "Spat rond met stijl en straal.",
-            en: "Splashes around with style and spray."
-          }
-        }
-      ];
-
-      let index = 0;
-
-      document.getElementById("next-btn").addEventListener("click", () => {
-        index = (index + 1) % pokemons.length;
-        const p = pokemons[index];
-
-        document.getElementById("pokemon-name").textContent = p.name;
-        document.getElementById("pokemoncard-img").src = p.img;
-        document.getElementById("pokemon-desc").textContent = p.desc[currentLanguage];
-      });
 
       //Om de taal te veranderen
       const languageLink = document.getElementById('taal-verandering');
