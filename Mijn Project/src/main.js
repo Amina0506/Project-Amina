@@ -43,10 +43,11 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         const zoekterm = zoekInput.value.trim().toLowerCase();
         const match = currentDetails.find(p => p.name.toLowerCase() === zoekterm);
 
-        if (zoekterm === '') {
-          alert(translations[currentLanguage].alertEmpty);
+        if (zoekterm.length < 2 || !/^[a-z]+$/i.test(zoekterm)) {
+          const foutmelding = translations[currentLanguage].invalidInput;
+          alert(foutmelding);
           return;
-        }
+        }        
 
         if (match) {
           updateTable([match]);
@@ -353,7 +354,8 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           filterAll: "Alle types",
           //alerts
           alertEmpty: "Vul een naam in voordat je zoekt!",
-          alertNotFound: 'Geen Pokémon gevonden met de naam "{name}". Zoek verder!'
+          alertNotFound: 'Geen Pokémon gevonden met de naam "{name}". Zoek verder!',
+          invalidInput: "Geef een geldige naam in (min. 2 letters)."
         },
         en: {
           menu1: "POKEMONS",
@@ -396,6 +398,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           //alerts
           alertEmpty: "Please enter a name before searching!",
           alertNotFound: 'No Pokémon found with the name "{name}". Try again!',
+          invalidInput: "Enter a valid name (min. 2 letters)."
         }
       };
 
