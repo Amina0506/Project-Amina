@@ -167,6 +167,45 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         clone.style.boxSizing = 'border-box';
         clone.style.position = 'relative';
 
+        const kruis = document.createElement('img');
+        kruis.src = 'images/delete.png';
+        kruis.alt = 'Verwijderen';
+        kruis.classList.add('verwijder-kruis');
+
+        kruis.style.position = 'absolute';
+        kruis.style.top = '10px';
+        kruis.style.right = '10px';
+        kruis.style.width = '30px';
+        kruis.style.cursor = 'pointer';
+
+        //Om een kaart te verwijderen
+        kruis.addEventListener('click', () => {
+          const naam = clone.querySelector('h2')?.textContent;
+          if (naam) {
+            toegevoegdeFavorieten.delete(naam);
+            localStorage.setItem('favorieten', JSON.stringify([...toegevoegdeFavorieten]));
+
+            //Om terug een lege hart te krijgen
+            const origineleKaart = [...kaarten].find(k => k.querySelector('h2')?.textContent === naam);
+            if (origineleKaart) {
+              const hart = origineleKaart.querySelector('.heart');
+              if (hart) {
+                hart.src = 'images/heart-symbol.png';
+              }
+            }
+          }
+
+          clone.remove();
+
+          if (favorietenLijst.children.length === 0) {
+            const p = document.createElement('p');
+            p.textContent = "Er is momenteel nog niets te zien...";
+            favorietenSectie.insertBefore(p, favorietenLijst);
+          }
+        });
+
+
+        clone.appendChild(kruis);
         favorietenLijst.appendChild(clone);
       }
 
