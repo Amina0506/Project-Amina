@@ -484,6 +484,8 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         }
       });
 
+
+      //Observer API
       const fadeElements = document.querySelectorAll('.fade-in');
 
       const observer = new IntersectionObserver((entries) => {
