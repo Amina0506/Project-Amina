@@ -72,8 +72,40 @@
     </div>
 
     <section>
-        
+
         <h1>Overzicht van alle Pokemons</h1>
+
+        <div id="filters" style="margin: 20px;">
+            <!--twee divs maken om ze naast elkaar te krijgen-->
+            <!--functie toevoegen om hoogte en gewicht te verbeteren-->
+            <div>
+            <label for="sort">Sorteren op:</label>
+            <select id="sort">
+                <option value="">Kies</option>
+                <option value="name-asc">Naam (A-Z)</option>
+                <option value="name-desc">Naam (Z-A)</option>
+                <option value="xp-asc">XP (klein naar groot)</option>
+                <option value="height-desc">Hoogte (groot naar klein)</option>
+                <option value="weight-desc">Gewicht (groot naar klein)</option>
+            </select>
+            </div>
+
+            <div>
+            <label for="type-filter" style="margin-left: 20px;">Filter op type:</label>
+            <select id="type-filter">
+                <option value="">Alle types</option>
+                <option value="normal">Normal</option>
+                <option value="grass">Grass</option>
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="flying">Flying</option>
+                <option value="poison">Poison</option>
+                <option value="bug">Bug</option>
+            </select>
+            </div>
+        </div>
+
+
         <table id="personages-tabel">
             <thead>
                 <tr>

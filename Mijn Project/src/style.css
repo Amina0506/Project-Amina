@@ -210,6 +210,30 @@ button {
   font-size: 50px;
 }
 
+/**/
+#filters{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#sort,
+#type-filter{
+  background-color:#382832;
+  color: #dcc57d;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  width: 200px;
+  margin: 25px 15px;
+}
+
+label{
+  font-size: 22px;
+  margin: 0px;
+}
+
+
 /*Tabel*/
 
 section h1{

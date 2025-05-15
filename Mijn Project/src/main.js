@@ -33,7 +33,51 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         }
       });
 
-      //Sorteren
+      //Sorteren en filteren
+      let currentDetails = [...pokemonDetails]; // Bewaar alle opgehaalde details
+
+      const sortSelect = document.getElementById("sort");
+      const filterSelect = document.getElementById("type-filter");
+      const tableBody = document.getElementById("personages-section");
+
+      function updateTable(filteredList) {
+        tableBody.innerHTML = "";
+        filteredList.forEach(pokemon => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+      <td>${pokemon.name}</td>
+      <td>${pokemon.types.map(t => t.type.name).join(", ")}</td>
+      <td>${pokemon.abilities.map(a => a.ability.name).join(", ")}</td>
+      <td>${pokemon.height / 10}m</td>
+      <td>${pokemon.weight / 10}kg</td>
+      <td>${pokemon.base_experience}XP</td>
+    `;
+          tableBody.appendChild(row);
+        });
+      }
+
+      function applySortAndFilter() {
+        let filtered = [...currentDetails];
+
+        const selectedType = filterSelect.value;
+        if (selectedType) {
+          filtered = filtered.filter(p => p.types.some(t => t.type.name === selectedType));
+        }
+
+        const sortValue = sortSelect.value;
+        if (sortValue === "name-asc") filtered.sort((a, b) => a.name.localeCompare(b.name));
+        else if (sortValue === "name-desc") filtered.sort((a, b) => b.name.localeCompare(a.name));
+        else if (sortValue === "xp-asc") filtered.sort((a, b) => a.base_experience - b.base_experience);
+        else if (sortValue === "height-desc") filtered.sort((a, b) => b.height - a.height);
+        else if (sortValue === "weight-desc") filtered.sort((a, b) => b.weight - a.weight);
+
+        updateTable(filtered);
+      }
+
+      sortSelect.addEventListener("change", applySortAndFilter);
+      filterSelect.addEventListener("change", applySortAndFilter);
+
+      updateTable(currentDetails);
 
 
 
@@ -66,34 +110,30 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
       const zoekInput = document.querySelector('input[name="zoekterm"]');
       const zoekButton = document.querySelector('#search button');
 
+      //Probleem als men een Pokémon in een gefilterde tabel zoekt,
+      //kan het zijn dat de Pokémon niet verschijnt, dit is de oplossing
       zoekButton.addEventListener('click', () => {
         const zoekterm = zoekInput.value.trim().toLowerCase();
-        const rijen = document.querySelectorAll('#personages-section tr');
+        const match = currentDetails.find(p => p.name.toLowerCase() === zoekterm);
 
-        let gevonden = false;
+        if (match) {
+          updateTable([match]);
 
-        rijen.forEach(rij => {
-          const naamCel = rij.querySelector('td');
-          if (naamCel && naamCel.textContent.toLowerCase() === zoekterm) {
-            //Scroll naar de rij
+          //Om naar de gezochte Pokémon te scrollen
+          setTimeout(() => {
+            const rij = document.querySelector('#personages-section tr');
+            rij.style.backgroundColor = '#9b89a9';
             rij.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-            //Na het zoeken van een Pokémon wordt de rij van deze kleur
-            rij.style.backgroundColor = '#9b89a9';
-
-            //Vak van de tabel wordt gekleurd voor 3s
             setTimeout(() => {
               rij.style.backgroundColor = '';
             }, 3000);
-
-            gevonden = true;
-          }
-        });
-
-        if (!gevonden) {
+          }, 50);
+        } else {
           alert(`Geen Pokémon gevonden met de naam "${zoekterm}". Zoek verder!`);
         }
       });
+
 
       //Om te zoeken met 'Enter'
       zoekInput.addEventListener('keypress', (e) => {
