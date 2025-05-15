@@ -338,6 +338,19 @@ p.info{
   width: 100%;
 }
 
+/*IntersectionObserver*/
+
+.fade-in{
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /**/
 
 h1{
