@@ -47,7 +47,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           const foutmelding = translations[currentLanguage].invalidInput;
           alert(foutmelding);
           return;
-        }        
+        }
 
         if (match) {
           updateTable([match]);
@@ -483,6 +483,23 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           addToFavorites(kaart);
         }
       });
+
+      const fadeElements = document.querySelectorAll('.fade-in');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      fadeElements.forEach(el => {
+        observer.observe(el);
+      });
+
 
     });
 
