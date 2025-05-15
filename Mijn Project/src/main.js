@@ -23,11 +23,11 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           div.innerHTML = `
             <img src="${pokemon.sprites.front_default}" style="width:200px;">
             <h2> ${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
-            <p class="info" style="font-size:20px;"><strong style="color:#2d1b13">Type:</strong> ${types}</p>
-            <p class="info" style="font-size:20px;"><strong style="color:#2d1b13">Abilities:</strong> ${abilities}</p>
-            <p class="info" style="font-size:20px;"><strong style="color:#2d1b13">Hoogte:</strong> ${height} m</p>
-            <p class="info" style="font-size:20px;"><strong style="color:#2d1b13">Gewicht:</strong> ${weight} kg</p>
-            <p class="info" style="font-size:20px;"><strong style="color:#2d1b13">XP:</strong> ${xp}</p>
+            <p class="info type" style="font-size:20px;"><strong style="color:#2d1b13">Type:</strong> ${types}</p>
+            <p class="info abilities" style="font-size:20px;"><strong style="color:#2d1b13">Abilities:</strong> ${abilities}</p>
+            <p class="info height" style="font-size:20px;"><strong style="color:#2d1b13">Hoogte:</strong> ${height} m</p>
+            <p class="info weight" style="font-size:20px;"><strong style="color:#2d1b13">Gewicht:</strong> ${weight} kg</p>
+            <p class="info xp" style="font-size:20px;"><strong style="color:#2d1b13">XP:</strong> ${xp}</p>
           `
             ;
         }
@@ -97,10 +97,11 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
       //Om te zoeken met 'Enter'
       zoekInput.addEventListener('keypress', (e) => {
-        if(e.key === 'Enter'){
+        if (e.key === 'Enter') {
           zoekButton.click();
         }
       })
+
 
       //Voor de likes
       const favorietenSectie = document.getElementById('favorieten');
@@ -169,27 +170,41 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
       });
 
 
+      let currentLanguage = 'nl';
+
       // Voor het random genereren van een Pokemon
       const pokemons = [
         {
           name: "Pikachu",
           img: "images/pikachu.png",
-          desc: "Zorgt altijd voor een schok van energie!"
+          desc: {
+            nl: "Zorgt altijd voor een schok van energie!",
+            en: "Always delivers a shock of energy!"
+          }
         },
         {
           name: "Bulbasaur",
           img: "images/bulbasaur.png",
-          desc: "Groeit stilletjes uit tot een groene legende."
+          desc: {
+            nl: "Groeit stilletjes uit tot een groene legende.",
+            en: "Quietly grows into a green legend."
+          }
         },
         {
           name: "Charmander",
           img: "images/charmander.png",
-          desc: "Klein lijf, grote vlam. Pas op!"
+          desc: {
+            nl: "Klein lijf, grote vlam. Pas op!",
+            en: "Small body, big flame. Watch out!"
+          }
         },
         {
           name: "Squirtle",
           img: "images/squirtle.png",
-          desc: "Spat rond met stijl en straal."
+          desc: {
+            nl: "Spat rond met stijl en straal.",
+            en: "Splashes around with style and spray."
+          }
         }
       ];
 
@@ -201,8 +216,143 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
         document.getElementById("pokemon-name").textContent = p.name;
         document.getElementById("pokemoncard-img").src = p.img;
-        document.getElementById("pokemon-desc").textContent = p.desc;
+        document.getElementById("pokemon-desc").textContent = p.desc[currentLanguage];
       });
 
+      //Om de taal te veranderen
+      const languageLink = document.getElementById('taal-verandering');
+
+      //Vertaling van elk element in de website
+      const translations = {
+        nl: {
+          menu1: "POKEMONS",
+          menu2: "FAVORIETEN",
+          desc1: "Zoek, filter en sorteer je favoriete Pokemons! Ontdek alles: hun namen, type en nog veel meer!",
+          desc2: "Gek op een Pokemon? Bewaar ze in je favorieten en raak ze nooit meer kwijt!",
+          zoekTitel: "Zoek naar uw favoriete Pokemons en ontdek...!",
+          nextButton: "Ontdek de volgende Pokémon !",
+          tabelTitel: "Overzicht van alle Pokemons",
+          favorietenTitel: "FAVORIETEN",
+          favorietenLeeg: "Er is momenteel nog niets te zien...",
+          searchButton: "Zoeken",
+          //tabel
+          thNaam: "Naam",
+          thType: "Type",
+          thAbility: "Ability",
+          thHoogte: "Hoogte",
+          thGewicht: "Gewicht",
+          thXP: "Aantal XP",
+          typeLabel: "Type:",
+          abilitiesLabel: "Abilities:",
+          heightLabel: "Hoogte:",
+          weightLabel: "Gewicht:",
+          xpLabel: "XP:",
+          type: "Type:",
+          abilities: "Abilities:",
+          height: "Hoogte:",
+          weight: "Gewicht:",
+          xp: "XP:"
+        },
+        en: {
+          menu1: "POKEMONS",
+          menu2: "FAVOURITES",
+          desc1: "Search, filter, and sort your favorite Pokémon! Discover their names, types, and much more!",
+          desc2: "In love with a Pokémon? Save them to your favourites so you never lose them!",
+          zoekTitel: "Search for your favourite Pokémon and discover...!",
+          nextButton: "Discover the next Pokémon!",
+          tabelTitel: "Overview of all Pokémons",
+          favorietenTitel: "FAVOURITES",
+          favorietenLeeg: "There's nothing to see yet...",
+          searchButton: "Search",
+          //tabel
+          thNaam: "Name",
+          thType: "Type",
+          thAbility: "Ability",
+          thHoogte: "Height",
+          thGewicht: "Weight",
+          thXP: "XP",
+          typeLabel: "Type:",
+          abilitiesLabel: "Abilities:",
+          heightLabel: "Height:",
+          weightLabel: "Weight:",
+          xpLabel: "XP:",
+
+          type: "Type:",
+          abilities: "Abilities:",
+          height: "Height:",
+          weight: "Weight:",
+          xp: "XP:"
+        }
+      };
+
+      languageLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const currentLang = languageLink.dataset.lang;
+        const newLang = currentLang === 'nl' ? 'en' : 'nl';
+
+        //Update tekst op pagina
+        const t = translations[newLang];
+        const ths = document.querySelectorAll('#personages-tabel thead th');
+
+        //Vertaling van elk element in de website
+        ths[0].textContent = t.thNaam;
+        ths[1].textContent = t.thType;
+        ths[2].textContent = t.thAbility;
+        ths[3].textContent = t.thHoogte;
+        ths[4].textContent = t.thGewicht;
+        ths[5].textContent = t.thXP;
+        document.querySelectorAll('a[href="#pokemons"]')[0].textContent = t.menu1;
+        document.querySelectorAll('a[href="#favorieten"]')[0].textContent = t.menu2;
+        document.querySelectorAll('a[href="#favorieten"]')[1].textContent = t.menu2;
+        document.querySelectorAll('.li-submenu .menu-description')[0].textContent = t.desc1;
+        document.querySelectorAll('.li-submenu + li .menu-description')[0].textContent = t.desc2;
+        document.querySelector('.beschrijving').textContent = t.zoekTitel;
+        document.querySelector('#next-btn').textContent = t.nextButton;
+        document.querySelector('section h1').textContent = t.tabelTitel;
+        document.querySelector('.FAVORIETEN h1').textContent = t.favorietenTitel;
+        document.getElementById('Zoeken').textContent = t.searchButton;
+
+        //Vertaling van de elementen in de kaarten
+        document.querySelectorAll('.type').forEach(el => {
+          const strong = el.querySelector('strong');
+          if (strong) strong.textContent = t.type;
+        });
+        
+        document.querySelectorAll('.abilities').forEach(el => {
+          const strong = el.querySelector('strong');
+          if (strong) strong.textContent = t.abilities;
+        });
+        
+        document.querySelectorAll('.height').forEach(el => {
+          const strong = el.querySelector('strong');
+          if (strong) strong.textContent = t.height;
+        });
+        
+        document.querySelectorAll('.weight').forEach(el => {
+          const strong = el.querySelector('strong');
+          if (strong) strong.textContent = t.weight;
+        });
+        
+        document.querySelectorAll('.xp').forEach(el => {
+          const strong = el.querySelector('strong');
+          if (strong) strong.textContent = t.xp;
+        });       
+
+
+        const favorietPlaceholder = document.querySelector('#favorieten p');
+        if (favorietPlaceholder) favorietPlaceholder.textContent = t.favorietenLeeg;
+
+        //Verandering van de knop
+        languageLink.textContent = currentLang === 'nl' ? 'NED' : 'EN';
+        languageLink.dataset.lang = newLang;
+
+        const itemDivs = document.querySelectorAll('.pokemon-list .list > div');
+
+        const currentPokemon = pokemons[index];
+        document.getElementById("pokemon-desc").textContent = currentPokemon.desc[newLang];
+        currentLanguage = newLang;
+
+      });
     });
+
   });
