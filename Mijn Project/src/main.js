@@ -136,6 +136,8 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
             //Om niet twee keer dezelfde kaart in de favorieten te hebben
             if (toegevoegdeFavorieten.has(kaartID)) return;
             toegevoegdeFavorieten.add(kaartID);
+            localStorage.setItem('favorieten', JSON.stringify([...toegevoegdeFavorieten]));
+
 
             const clone = kaart.cloneNode(true);
             const cloneHeart = clone.querySelector('.heart');
@@ -154,6 +156,8 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
             favorietenLijst.appendChild(clone);
           } else {
             toegevoegdeFavorieten.delete(kaartID);
+            localStorage.setItem('favorieten', JSON.stringify([...toegevoegdeFavorieten]));
+
             [...favorietenLijst.children].forEach(child => {
               if (child.querySelector('h2')?.textContent === kaartID) {
                 child.remove();
@@ -317,26 +321,26 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           const strong = el.querySelector('strong');
           if (strong) strong.textContent = t.type;
         });
-        
+
         document.querySelectorAll('.abilities').forEach(el => {
           const strong = el.querySelector('strong');
           if (strong) strong.textContent = t.abilities;
         });
-        
+
         document.querySelectorAll('.height').forEach(el => {
           const strong = el.querySelector('strong');
           if (strong) strong.textContent = t.height;
         });
-        
+
         document.querySelectorAll('.weight').forEach(el => {
           const strong = el.querySelector('strong');
           if (strong) strong.textContent = t.weight;
         });
-        
+
         document.querySelectorAll('.xp').forEach(el => {
           const strong = el.querySelector('strong');
           if (strong) strong.textContent = t.xp;
-        });       
+        });
 
 
         const favorietPlaceholder = document.querySelector('#favorieten p');
@@ -353,6 +357,37 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         currentLanguage = newLang;
 
       });
+
+      //Favorieten bijhouden
+      const opgeslagenFavorieten = JSON.parse(localStorage.getItem('favorieten')) || [];
+
+      opgeslagenFavorieten.forEach(kaartNaam => {
+        const kaart = [...kaarten].find(k => {
+          const h2 = k.querySelector('h2');
+          return h2 && h2.textContent === kaartNaam;
+        });
+
+        if (kaart) {
+          toegevoegdeFavorieten.add(kaartNaam);
+
+          const clone = kaart.cloneNode(true);
+          const cloneHeart = clone.querySelector('.heart');
+          if (cloneHeart) cloneHeart.remove();
+
+          const placeholder = favorietenSectie.querySelector('p');
+          if (placeholder) placeholder.remove();
+
+          clone.style.flex = '0 0 auto';
+          clone.style.width = '230px';
+          clone.style.border = '5px #624e75 solid';
+          clone.style.padding = '5px';
+          clone.style.boxSizing = 'border-box';
+          clone.style.position = 'relative';
+
+          favorietenLijst.appendChild(clone);
+        }
+      });
+
     });
 
   });
