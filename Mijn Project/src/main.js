@@ -341,7 +341,17 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           abilities: "Abilities:",
           height: "Hoogte:",
           weight: "Gewicht:",
-          xp: "XP:"
+          xp: "XP:",
+          //Sorteren
+          sortLabel: "Sorteren op:",
+          sortKies: "Kies",
+          sortNameAZ: "Naam (A-Z)",
+          sortNameZA: "Naam (Z-A)",
+          sortXPasc: "XP (klein naar groot)",
+          sortHeightDesc: "Hoogte (groot naar klein)",
+          sortWeightDesc: "Gewicht (groot naar klein)",
+          filterLabel: "Filter op type:",
+          filterAll: "Alle types",
         },
         en: {
           menu1: "POKEMONS",
@@ -366,12 +376,21 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           heightLabel: "Height:",
           weightLabel: "Weight:",
           xpLabel: "XP:",
-
           type: "Type:",
           abilities: "Abilities:",
           height: "Height:",
           weight: "Weight:",
-          xp: "XP:"
+          xp: "XP:",
+          //Sorteren
+          sortLabel: "Sort by:",
+          sortKies: "Select",
+          sortNameAZ: "Name (A-Z)",
+          sortNameZA: "Name (Z-A)",
+          sortXPasc: "XP (low to high)",
+          sortHeightDesc: "Height (high to low)",
+          sortWeightDesc: "Weight (high to low)",
+          filterLabel: "Filter by type:",
+          filterAll: "All types",
         }
       };
 
@@ -410,6 +429,21 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
             if (strong) strong.textContent = t[label];
           });
         });
+
+        // Filters vertalen
+        document.querySelector('label[for="sort"]').textContent = t.sortLabel;
+        document.querySelector('label[for="type-filter"]').textContent = t.filterLabel;
+
+        const sortOptions = document.querySelectorAll('#sort option');
+        sortOptions[0].textContent = t.sortKies;
+        sortOptions[1].textContent = t.sortNameAZ;
+        sortOptions[2].textContent = t.sortNameZA;
+        sortOptions[3].textContent = t.sortXPasc;
+        sortOptions[4].textContent = t.sortHeightDesc;
+        sortOptions[5].textContent = t.sortWeightDesc;
+
+        document.querySelector('#type-filter option[value=""]').textContent = t.filterAll;
+
 
 
         const favorietPlaceholder = document.querySelector('#favorieten p');
