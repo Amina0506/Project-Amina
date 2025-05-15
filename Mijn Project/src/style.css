@@ -246,7 +246,7 @@ td{
 }
 
 :nth-child(6){
-  border: transparent;
+  border: transparent; /*Om geen border op de laatse kolom te krijgen*/
   border-bottom: 2px #624e75 dashed;
 }
 
@@ -268,6 +268,8 @@ th:nth-child(6){
   border-radius: 15px;
   margin-bottom: 60px;
 }
+
+/*Favorieten*/
 
 .FAVORIETEN{
   border: 1px #382832 solid;
@@ -292,6 +294,7 @@ th:nth-child(6){
   color: #d5c4b1;
 }
 
+/*Items in de lijst van de Pokémons*/
 .item-one, 
 .item-two, 
 .item-three, 
