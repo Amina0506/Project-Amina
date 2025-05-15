@@ -242,10 +242,16 @@ td{
   font-size: 20px;
   text-transform: capitalize;
   border-right: 2px #624e75 solid;
+  border-bottom: 2px #624e75 dashed;
 }
 
 :nth-child(6){
   border: transparent;
+  border-bottom: 2px #624e75 dashed;
+}
+
+th:nth-child(6){
+  border-bottom: transparent;
 }
 
 /*Lijst met de Pokemons en de favorieten*/
