@@ -254,6 +254,10 @@ th:nth-child(6){
   border-bottom: transparent;
 }
 
+p.info{
+  border: transparent;
+}
+
 /*Lijst met de Pokemons en de favorieten*/
 
 .list{
