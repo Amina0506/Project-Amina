@@ -206,7 +206,6 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         if (cloneHeart) cloneHeart.remove();
 
         const placeholder = favorietenSectie.querySelector('p');
-        if (placeholder) placeholder.remove();
 
         //Stijl van de kaart
         clone.style.flex = '0 0 auto';
