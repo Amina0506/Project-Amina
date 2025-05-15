@@ -43,6 +43,11 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         const zoekterm = zoekInput.value.trim().toLowerCase();
         const match = currentDetails.find(p => p.name.toLowerCase() === zoekterm);
 
+        if (zoekterm === '') {
+          alert("Vul een naam in voordat je zoekt!");
+          return;
+        }
+
         if (match) {
           updateTable([match]);
 
