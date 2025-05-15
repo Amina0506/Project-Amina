@@ -210,7 +210,8 @@ button {
   font-size: 50px;
 }
 
-/**/
+/*Sorteren en filteren*/
+
 #filters{
   display: flex;
   justify-content: space-evenly;
