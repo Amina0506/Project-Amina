@@ -110,6 +110,27 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
       const toegevoegdeFavorieten = new Set();
 
+      function addToFavorites(kaart) {
+        const clone = kaart.cloneNode(true);
+
+        const cloneHeart = clone.querySelector('.heart');
+        if (cloneHeart) cloneHeart.remove();
+
+        const placeholder = favorietenSectie.querySelector('p');
+        if (placeholder) placeholder.remove();
+
+        //Stijl van de kaart
+        clone.style.flex = '0 0 auto';
+        clone.style.width = '230px';
+        clone.style.border = '5px #624e75 solid';
+        clone.style.padding = '5px';
+        clone.style.boxSizing = 'border-box';
+        clone.style.position = 'relative';
+
+        favorietenLijst.appendChild(clone);
+      }
+
+
       kaarten.forEach(kaart => {
         kaart.style.position = 'relative';
         const heart = document.createElement('img');
@@ -139,21 +160,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
             localStorage.setItem('favorieten', JSON.stringify([...toegevoegdeFavorieten]));
 
 
-            const clone = kaart.cloneNode(true);
-            const cloneHeart = clone.querySelector('.heart');
-            if (cloneHeart) cloneHeart.remove();
-
-            const placeholder = favorietenSectie.querySelector('p');
-            if (placeholder) placeholder.remove();
-
-            clone.style.flex = '0 0 auto';
-            clone.style.width = '230px';
-            clone.style.border = '5px #624e75 solid';
-            clone.style.padding = '5px';
-            clone.style.boxSizing = 'border-box';
-            clone.style.position = 'relative';
-
-            favorietenLijst.appendChild(clone);
+            addToFavorites(kaart);
           } else {
             toegevoegdeFavorieten.delete(kaartID);
             localStorage.setItem('favorieten', JSON.stringify([...toegevoegdeFavorieten]));
@@ -317,29 +324,12 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         document.getElementById('Zoeken').textContent = t.searchButton;
 
         //Vertaling van de elementen in de kaarten
-        document.querySelectorAll('.type').forEach(el => {
-          const strong = el.querySelector('strong');
-          if (strong) strong.textContent = t.type;
-        });
-
-        document.querySelectorAll('.abilities').forEach(el => {
-          const strong = el.querySelector('strong');
-          if (strong) strong.textContent = t.abilities;
-        });
-
-        document.querySelectorAll('.height').forEach(el => {
-          const strong = el.querySelector('strong');
-          if (strong) strong.textContent = t.height;
-        });
-
-        document.querySelectorAll('.weight').forEach(el => {
-          const strong = el.querySelector('strong');
-          if (strong) strong.textContent = t.weight;
-        });
-
-        document.querySelectorAll('.xp').forEach(el => {
-          const strong = el.querySelector('strong');
-          if (strong) strong.textContent = t.xp;
+        const labels = ['type', 'abilities', 'height', 'weight', 'xp'];
+        labels.forEach(label => {
+          document.querySelectorAll(`.${label}`).forEach(el => {
+            const strong = el.querySelector('strong');
+            if (strong) strong.textContent = t[label];
+          });
         });
 
 
@@ -369,22 +359,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
         if (kaart) {
           toegevoegdeFavorieten.add(kaartNaam);
-
-          const clone = kaart.cloneNode(true);
-          const cloneHeart = clone.querySelector('.heart');
-          if (cloneHeart) cloneHeart.remove();
-
-          const placeholder = favorietenSectie.querySelector('p');
-          if (placeholder) placeholder.remove();
-
-          clone.style.flex = '0 0 auto';
-          clone.style.width = '230px';
-          clone.style.border = '5px #624e75 solid';
-          clone.style.padding = '5px';
-          clone.style.boxSizing = 'border-box';
-          clone.style.position = 'relative';
-
-          favorietenLijst.appendChild(clone);
+          addToFavorites(kaart);
         }
       });
 
