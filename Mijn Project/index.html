@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon</title>
+    <title>Pokémon Webite</title>
+    <!--CSS-->
     <link rel="stylesheet" type="text/css" href="src/style.css">
+    <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
@@ -14,6 +16,7 @@
 <body>
     <a id="top"></a>
 
+    <!--Navigatie-->
     <header>
         <nav id="navigatie">
             <img src="images/pokemonlogo.png" alt="" width="150px" id="pokemon-logo">
@@ -43,6 +46,7 @@
     </header>
 
 
+    <!--Search bar-->
     <div id="intro">
         <div id="peekingpokemon"><img src="images/peekingpokemon.png" alt="" width="200px" id="peekingpokemon"></div>
 
@@ -59,6 +63,7 @@
     </div>
 
 
+    <!--Interactieve Pokémon sectie-->
     <div id="pokemon-card">
         <div class="left">
             <h1 id="pokemon-name">Pikachu</h1>
@@ -71,8 +76,9 @@
         </div>
     </div>
 
+    <!--Sorteren en filteren + tabel-->
     <section>
-
+        <!--Sorteren en filteren-->
         <h1>Overzicht van alle Pokemons</h1>
 
         <div id="filters" style="margin: 20px;">
@@ -105,7 +111,7 @@
             </div>
         </div>
 
-
+        <!--Tabel-->
         <table id="personages-tabel">
             <thead>
                 <tr>
@@ -124,6 +130,7 @@
         </table>
     </section>
 
+    <!--Lijst met Pokémons-->
     <div class="pokemon-list" id="pokemons">
         <h1>POKEMONS</h1>
 
@@ -237,21 +244,25 @@
 
     </div>
 
+    <!--Favorieten-->
     <div class="FAVORIETEN" id="favorieten">
         <h1>FAVORIETEN</h1>
         <p>Er is momenteel nog niets te zien...</p>
         <div id="favorieten-lijst"></div>
     </div>
 
+    <!--Afbeelding op de footer-->
     <div id="pokemon-all">
         <img src="images/pokemonthree.png" alt="" width="400px">
     </div>
 
+    <!--Footer-->
     <footer>
         <p>&copy; 2025 - Amina Saidi</p>
         <p>All rights reserved</p>
     </footer>
 
+    <!--Knop om boven op de pagina terecht te komen-->
     <a href="#top" id="backtotop">Back to top</a>
 
     <script type="module" src="src/main.js"></script>
