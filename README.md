@@ -19,25 +19,25 @@ Pokémon API -> https://pokeapi.co/
 **Implementatie van de technische vereisten:**
 
 1. DOM manipulatie:  
-  - Elementen selecteren
-  - Elementen manipuleren
-  - Events aan elementen koppelen
+  - Elementen selecteren //421 tot 430
+  - Elementen manipuleren //23 tot 31
+  - Events aan elementen koppelen //42, 72, 116, 166, 167, 231, 277, 405
 
 2. Modern JavaScript:  
-  - Gebruik van constanten
-  - Template literals
-  - Iteratie over arrays
-  - Array methodes
-  - Arrow functions
-  - Conditional (ternary) operator (moderne if..else)
+  - Gebruik van constanten //Hele script
+  - Template literals //26 tot 30
+  - Iteratie over arrays //13, 261,...
+  - Array methodes //17, 138
+  - Arrow functions //72, 405
+  - Conditional (ternary) operator (moderne if..else) //408
   - Callback functions
-  - Promises
-  - Async & Await
-  - Observer API (1 is voldoende)
+  - Promises //10, 11
+  - Async & Await //172 tot 191, 173, 174, 178
+  - Observer API (1 is voldoende) //489 tot 503
 
 3. Data & API:  
-  - Fetch om data op te halen
-  - JSON manipuleren en weergeven
+  - Fetch om data op te halen //4
+  - JSON manipuleren en weergeven //5, 10, 174, 178
 
 4. Opslag & validatie:  
   - Formulier validatie
