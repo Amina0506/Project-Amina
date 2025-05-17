@@ -6,14 +6,25 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
   .then(data => {
     const pokemonList = data.results;
 
-    // Voor elke Pokémon details ophalen
+    //DOM: Elementen selecteren
+    const zoekInput = document.querySelector('input[name="zoekterm"]');
+    const zoekButton = document.querySelector('#search button');
+    const sortSelect = document.getElementById("sort");
+    const filterSelect = document.getElementById("type-filter");
+    const tableBody = document.getElementById("personages-section");
+    const nextBtn = document.getElementById("next-btn"); 
+    const languageLink = document.getElementById('taal-verandering');
+    const favorietenSectie = document.getElementById('favorieten');
+    const favorietenLijst = document.getElementById('favorieten-lijst');
+    const kaartenContainer = document.querySelector('.pokemon-list .list');
+
+    //Voor elke Pokémon details op te halen
     const promises = pokemonList.map(pokemon => fetch(pokemon.url).then(res => res.json()));
     Promise.all(promises).then(pokemonDetails => {
-      // Itereert over de bestaande divs en vult ze met data
+      //Itereert over de bestaande divs en vult ze met data
       pokemonDetails.forEach((pokemon, index) => {
         const div = itemDivs[index];
         if (div) {
-
           const types = pokemon.types.map(t => t.type.name).join(', ');
           const abilities = pokemon.abilities.map(a => a.ability.name).join(', ');
           const height = pokemon.height / 10;
@@ -28,17 +39,14 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
             <p class="info height" style="font-size:20px;"><strong style="color:#2d1b13">Hoogte:</strong> ${height} m</p>
             <p class="info weight" style="font-size:20px;"><strong style="color:#2d1b13">Gewicht:</strong> ${weight} kg</p>
             <p class="info xp" style="font-size:20px;"><strong style="color:#2d1b13">XP:</strong> ${xp}</p>
-          `
-            ;
+          `;
         }
       });
 
-      //Pokémon zoeken
-      const zoekInput = document.querySelector('input[name="zoekterm"]');
-      const zoekButton = document.querySelector('#search button');
+//Pokémon zoeken
 
       //Probleem als men een Pokémon in een gefilterde tabel zoekt,
-      //kan het zijn dat de Pokémon niet verschijnt, dit is de oplossing
+      //kan het zijn dat de Pokémon niet verschijnt, dit is de oplossing:
       zoekButton.addEventListener('click', () => {
         const zoekterm = zoekInput.value.trim().toLowerCase();
         const match = currentDetails.find(p => p.name.toLowerCase() === zoekterm);
@@ -67,15 +75,15 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         }
       });
 
-
       //Om te zoeken met 'Enter'
       zoekInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
           zoekButton.click();
         }
       })
+      //
 
-      // Voor het random genereren van een Pokemon
+//Voor het random genereren van een Pokemon
       const pokemons = [
         {
           name: "Pikachu",
@@ -110,9 +118,9 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           }
         }
       ];
-
       let index = 0;
 
+      //Na het klikken van de knop in de interactieve sectie
       document.getElementById("next-btn").addEventListener("click", () => {
         index = (index + 1) % pokemons.length;
         const p = pokemons[index];
@@ -122,25 +130,21 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         document.getElementById("pokemon-desc").textContent = p.desc[currentLanguage];
       });
 
-      //Sorteren en filteren
-      let currentDetails = [...pokemonDetails]; // Bewaar alle opgehaalde details
-
-      const sortSelect = document.getElementById("sort");
-      const filterSelect = document.getElementById("type-filter");
-      const tableBody = document.getElementById("personages-section");
+//Sorteren en filteren
+      let currentDetails = [...pokemonDetails]; //Details bewaren
 
       function updateTable(filteredList) {
         tableBody.innerHTML = "";
         filteredList.forEach(pokemon => {
           const row = document.createElement("tr");
           row.innerHTML = `
-      <td>${pokemon.name}</td>
-      <td>${pokemon.types.map(t => t.type.name).join(", ")}</td>
-      <td>${pokemon.abilities.map(a => a.ability.name).join(", ")}</td>
-      <td>${pokemon.height / 10}m</td>
-      <td>${pokemon.weight / 10}kg</td>
-      <td>${pokemon.base_experience}XP</td>
-    `;
+              <td>${pokemon.name}</td>
+              <td>${pokemon.types.map(t => t.type.name).join(", ")}</td>
+              <td>${pokemon.abilities.map(a => a.ability.name).join(", ")}</td>
+              <td>${pokemon.height / 10}m</td>
+              <td>${pokemon.weight / 10}kg</td>
+              <td>${pokemon.base_experience}XP</td>
+            `;
           tableBody.appendChild(row);
         });
       }
@@ -168,7 +172,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
       updateTable(currentDetails);
 
-      //Functie voor de tabel
+//Functie voor de tabel
       async function fetchAndDisplayPokemonData() {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20');
         const data = await response.json();
@@ -192,16 +196,12 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
 
       fetchAndDisplayPokemonData();
 
-      //Voor de likes
-      const favorietenSectie = document.getElementById('favorieten');
-      const favorietenLijst = document.getElementById('favorieten-lijst');
+//Voor de likes
       const kaarten = document.querySelectorAll('.list > div');
-
       const toegevoegdeFavorieten = new Set();
 
       function addToFavorites(kaart) {
         const clone = kaart.cloneNode(true);
-
         const cloneHeart = clone.querySelector('.heart');
         if (cloneHeart) cloneHeart.remove();
 
@@ -219,7 +219,6 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         kruis.src = 'images/delete.png';
         kruis.alt = 'Verwijderen';
         kruis.classList.add('verwijder-kruis');
-
         kruis.style.position = 'absolute';
         kruis.style.top = '10px';
         kruis.style.right = '10px';
@@ -306,10 +305,23 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         });
       });
 
-      let currentLanguage = 'nl';
+      //Favorieten bijhouden
+      const opgeslagenFavorieten = JSON.parse(localStorage.getItem('favorieten')) || [];
 
-      //Om de taal te veranderen
-      const languageLink = document.getElementById('taal-verandering');
+      opgeslagenFavorieten.forEach(kaartNaam => {
+        const kaart = [...kaarten].find(k => {
+          const h2 = k.querySelector('h2');
+          return h2 && h2.textContent === kaartNaam;
+        });
+
+        if (kaart) {
+          toegevoegdeFavorieten.add(kaartNaam);
+          addToFavorites(kaart);
+        }
+      });
+
+//Vertaling
+      let currentLanguage = 'nl';
 
       //Vertaling van elk element in de website
       const translations = {
@@ -401,12 +413,11 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         }
       };
 
+      //Na het klikken op de knop 'EN' of 'NED'
       languageLink.addEventListener('click', (e) => {
         e.preventDefault();
         const currentLang = languageLink.dataset.lang;
         const newLang = currentLang === 'nl' ? 'en' : 'nl';
-
-        //Update tekst op pagina
         const t = translations[newLang];
         const ths = document.querySelectorAll('#personages-tabel thead th');
 
@@ -427,6 +438,8 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         document.querySelector('section h1').textContent = t.tabelTitel;
         document.querySelector('.FAVORIETEN h1').textContent = t.favorietenTitel;
         document.getElementById('Zoeken').textContent = t.searchButton;
+        document.querySelector('label[for="sort"]').textContent = t.sortLabel;
+        document.querySelector('label[for="type-filter"]').textContent = t.filterLabel;
 
         //Vertaling van de elementen in de kaarten
         const labels = ['type', 'abilities', 'height', 'weight', 'xp'];
@@ -437,54 +450,31 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
           });
         });
 
-        // Filters vertalen
-        document.querySelector('label[for="sort"]').textContent = t.sortLabel;
-        document.querySelector('label[for="type-filter"]').textContent = t.filterLabel;
-
-        const sortOptions = document.querySelectorAll('#sort option');
-        sortOptions[0].textContent = t.sortKies;
-        sortOptions[1].textContent = t.sortNameAZ;
-        sortOptions[2].textContent = t.sortNameZA;
-        sortOptions[3].textContent = t.sortXPasc;
-        sortOptions[4].textContent = t.sortHeightDesc;
-        sortOptions[5].textContent = t.sortWeightDesc;
-
-        document.querySelector('#type-filter option[value=""]').textContent = t.filterAll;
-
-
-
-        const favorietPlaceholder = document.querySelector('#favorieten p');
-        if (favorietPlaceholder) favorietPlaceholder.textContent = t.favorietenLeeg;
+        //Vertaling van de sorteeropties in dropdownmenu
+        function vertaalSelectOpties(t) {
+          const waarden = [t.sortKies, t.sortNameAZ, t.sortNameZA, t.sortXPasc, t.sortHeightDesc, t.sortWeightDesc];
+          document.querySelectorAll('#sort option').forEach((opt, i) => opt.textContent = waarden[i]);
+          document.querySelector('#type-filter option[value=""]').textContent = t.filterAll;
+          
+          const placeholder = document.querySelector('#favorieten p');
+          if (placeholder) placeholder.textContent = t.favorietenLeeg;
+        }
+        
+        vertaalSelectOpties(t);
+        
 
         //Verandering van de knop
         languageLink.textContent = currentLang === 'nl' ? 'NED' : 'EN';
         languageLink.dataset.lang = newLang;
 
         const itemDivs = document.querySelectorAll('.pokemon-list .list > div');
-
         const currentPokemon = pokemons[index];
+
         document.getElementById("pokemon-desc").textContent = currentPokemon.desc[newLang];
         currentLanguage = newLang;
-
       });
 
-      //Favorieten bijhouden
-      const opgeslagenFavorieten = JSON.parse(localStorage.getItem('favorieten')) || [];
-
-      opgeslagenFavorieten.forEach(kaartNaam => {
-        const kaart = [...kaarten].find(k => {
-          const h2 = k.querySelector('h2');
-          return h2 && h2.textContent === kaartNaam;
-        });
-
-        if (kaart) {
-          toegevoegdeFavorieten.add(kaartNaam);
-          addToFavorites(kaart);
-        }
-      });
-
-
-      //Observer API
+//Observer API
       const fadeElements = document.querySelectorAll('.fade-in');
 
       const observer = new IntersectionObserver((entries) => {
@@ -501,7 +491,5 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
         observer.observe(el);
       });
 
-
     });
-
   });
