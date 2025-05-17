@@ -19,29 +19,29 @@ Pokémon API -> https://pokeapi.co/
 **Implementatie van de technische vereisten:**
 
 1. DOM manipulatie:  
-  - Elementen selecteren //421 tot 430
-  - Elementen manipuleren //23 tot 31
-  - Events aan elementen koppelen //42, 72, 116, 166, 167, 231, 277, 405
+  - Elementen selecteren // 9 tot 19
+  - Elementen manipuleren //34 tot 42
+  - Events aan elementen koppelen //50, 79, 124, 417, 
 
 2. Modern JavaScript:  
-  - Gebruik van constanten //Hele script
-  - Template literals //26 tot 30
-  - Iteratie over arrays //13, 261,...
-  - Array methodes //17, 138
-  - Arrow functions //72, 405
-  - Conditional (ternary) operator (moderne if..else) //408
+  - Gebruik van constanten //9 tot 19, 179
+  - Template literals //37 tot 41, 186 tot 191
+  - Iteratie over arrays //25
+  - Array methodes //28, 142
+  - Arrow functions //79, 417
+  - Conditional (ternary) operator (moderne if..else) //420
   - Callback functions
-  - Promises //10, 11
-  - Async & Await //172 tot 191, 173, 174, 178
-  - Observer API (1 is voldoende) //489 tot 503
+  - Promises //22, 23
+  - Async & Await //176 tot 195
+  - Observer API (1 is voldoende) //477 tot 492
 
 3. Data & API:  
-  - Fetch om data op te halen //4
-  - JSON manipuleren en weergeven //5, 10, 174, 178
+  - Fetch om data op te halen // 4
+  - JSON manipuleren en weergeven // 178
 
 4. Opslag & validatie:  
-  - Formulier validatie
-  - Gebruik van LocalStorage 
+  - Formulier validatie // 54
+  - Gebruik van LocalStorage // 233, 285, 291, 309
 
 5. Styling & layout:  
   - Basis HTML layout (flexbox of CSS grid kan hiervoor worden gebruikt)
@@ -54,9 +54,23 @@ Pokémon API -> https://pokeapi.co/
 ****
 
 **Installatiehandleiding:**
+
+1. Repository clonen:
+git clone https://github.com/Amina0506/Project-Amina.git
+ 
+2. Naar projectmap navigeren
+cd "Mijn Project"
+   
+3. Ontwikkelserver starten
+npm run dev
+   
+4. In de browser openen
+
 ****
 
 **Screenshots van de applicatie:**
 ****
 
 **Gebruikte bronnen:**
+Vertaling: https://www.youtube.com/watch?v=7IGse7u_GPI&list=LL&index=1
+
