@@ -1,76 +1,104 @@
-POKÉMON WEBSITE:
+# POKÉMON WEBSITE:
 
 Deze website maakt gebruik van een PokéApi en is bedoeld om informatie over Pokémons op te halen.
 
-**Functionaliteiten:**
-- Zoekfunctie om Pokémons op naam te vinden.
-- Het filteren en sorteren van Pokémons op verschillende kenmerken, zoals type, hoogte, gewicht,...
-- Een interactieve knop die een verschillende Pokémon toont elke keer er op dat knop geklikt wordt.
-- Weergave van Pokémons in een overzichtelijke tabel en kaartstructuur.
-- 'Favorieten'-sectie waar de user zijn favoriete Pokémons kan opslaan.
-- Gebruiksvriendelijk ontwerp met een menu, knoppen om de taal te veranderen, links die naar een deel van de pagina verwijzen,...
+## Functionaliteiten:
+
+1. Dataverzameling & -weergave: 
+  - 20 Pokémons ophalen
+  - Pokémons opgegeven in een tabel met details
+
+2. Interactiviteit:
+  - Mogelijkheid om Pokémons te zoeken, filteren op basis van type en sorteren (alphabetisch, aantal XP,...)
+
+3. Personalisatie: 
+  - Functionaliteit om jouw favoriete Pokémons op te slaan aan de hand van 'likes'. Vind ze terug in de sectie 'Favorieten'.
+  - Vertaling van de website in het Engels beschkbaar.
+  - Data wordt bewaard tussen de sessies, dus geen verloren favorieten!
+
+4. Gebruikerservaring: 
+  - Gebruiksvriendelijke website met verwijderknoppen,... 
+  - Responsive design = website beschikbaar ook op kleine schermen!
+
 ****
 
-**Gebruikte API:**
+## Gebruikte API:
 
 Pokémon API -> https://pokeapi.co/
 ****
 
-**Implementatie van de technische vereisten:**
+## Implementatie van de technische vereisten:
+*Dit zijn slechts een paar voorbeelden van hoe ze gebruikt kunnen worden, maar ze zijn al verschillende keren gebruikt.*
 
 1. DOM manipulatie:  
-  - Elementen selecteren // 9 tot 19
-  - Elementen manipuleren //34 tot 42
-  - Events aan elementen koppelen //50, 79, 124, 417, 
+  - Elementen selecteren 
+    9 tot 19
+
+  - Elementen manipuleren 
+    34 tot 42
+
+  - Events aan elementen koppelen 
+    50, 79, 124, 417, 
 
 2. Modern JavaScript:  
-  - Gebruik van constanten //9 tot 19, 179
-  - Template literals //37 tot 41, 186 tot 191
-  - Iteratie over arrays //25
-  - Array methodes //28, 142
-  - Arrow functions //79, 417
-  - Conditional (ternary) operator (moderne if..else) //420
+  - Gebruik van constanten 
+    9 tot 19, 179
+
+  - Template literals 
+    37 tot 41, 186 tot 191
+
+  - Iteratie over arrays 
+    25
+
+  - Array methodes 
+    28, 142
+
+  - Arrow functions 
+    79, 417
+
+  - Conditional (ternary) operator (moderne if..else) 
+    420
+
   - Callback functions
-  - Promises //22, 23
-  - Async & Await //176 tot 195
-  - Observer API (1 is voldoende) //477 tot 492
+    Bv: 50 tot 76
+
+  - Promises 
+    22, 23
+
+  - Async & Await 
+    176 tot 195
+
+  - Observer API (1 is voldoende) 
+    477 tot 492
 
 3. Data & API:  
-  - Fetch om data op te halen // 4
-  - JSON manipuleren en weergeven // 178
+  - Fetch om data op te halen 
+    4
+
+  - JSON manipuleren en weergeven
+    178
 
 4. Opslag & validatie:  
-  - Formulier validatie // 54
-  - Gebruik van LocalStorage // 233, 285, 291, 309
+  - Formulier validatie 
+    54
 
-5. Styling & layout:  
-  - Basis HTML layout (flexbox of CSS grid kan hiervoor worden gebruikt)
-  - Basis CSS
-  - Gebruiksvriendelijke elementen (verwijderknoppen, icoontjes,...)
+  - Gebruik van LocalStorage 
+    233, 285, 291, 309
 
-6. Tooling & structuur: 
-  - Project is opgezet met Vite 
-  - Een correcte folderstructuur wordt aangehouden (gescheiden html, css en js files, src folder, dist folder, ...)
 ****
 
-**Installatiehandleiding:**
+## Installatiehandleiding:
 
-1. Repository clonen:
-git clone https://github.com/Amina0506/Project-Amina.git
+*Geïnstalleerd met Vite*
  
-2. Naar projectmap navigeren
-cd "Mijn Project"
+1. Ontwikkelserver starten
+=> npm run dev
    
-3. Ontwikkelserver starten
-npm run dev
-   
-4. In de browser openen
+2. In de browser openen
 
 ****
 
-**Screenshots van de applicatie:**
-****
+## Gebruikte bronnen:
 
-**Gebruikte bronnen:**
-Vertaling: https://www.youtube.com/watch?v=7IGse7u_GPI&list=LL&index=1
-
+Vertaling: 
+https://www.youtube.com/watch?v=7IGse7u_GPI&list=LL&index=1
