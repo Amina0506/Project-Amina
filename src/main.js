@@ -1,3 +1,5 @@
+import './style.css'
+
 const itemDivs = document.querySelectorAll('.pokemon-list .list > div');
 
 // 20 Pokemons ophalen
