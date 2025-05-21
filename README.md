@@ -20,12 +20,10 @@ Deze website maakt gebruik van een PokéApi en is bedoeld om informatie over Pok
   - Gebruiksvriendelijke website met verwijderknoppen,... 
   - Responsive design = website beschikbaar ook op kleine schermen!
 
-****
 
 ## Gebruikte API:
 
 Pokémon API -> https://pokeapi.co/
-****
 
 ## Implementatie van de technische vereisten:
 *Dit zijn slechts een paar voorbeelden van hoe ze gebruikt kunnen worden, maar ze zijn al verschillende keren gebruikt.*
@@ -85,7 +83,6 @@ Pokémon API -> https://pokeapi.co/
   - Gebruik van LocalStorage 
     233, 285, 291, 309
 
-****
 
 ## Installatiehandleiding:
 
@@ -96,7 +93,6 @@ Pokémon API -> https://pokeapi.co/
    
 2. In de browser openen
 
-****
 
 ## Gebruikte bronnen:
 
